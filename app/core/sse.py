@@ -2,7 +2,7 @@ import asyncio
 import json
 from collections.abc import AsyncGenerator
 
-from app.core.config import Settings
+from app.core.config import settings
 
 _clients: list[asyncio.Queue[dict[str, str]]] = []
 
@@ -25,12 +25,12 @@ async def event_generator() -> AsyncGenerator[dict[str, str], None]:
     queue: asyncio.Queue[dict[str, str]] = asyncio.Queue()
     _clients.append(queue)
 
-    try:
+    try:~
         while True:
             try:
                 event = await asyncio.wait_for(
                     queue.get(),
-                    timeout=Settings.sse_keepalive_interval,
+                    timeout=settings.sse_keepalive_interval,
                 )
                 yield event
 
