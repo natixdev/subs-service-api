@@ -45,7 +45,6 @@ async def create_obligation(
 ) -> ObligationCreateResponse:
     """Создает новое обязательство."""
     service = _build_service(session)
-
     return await service.create(data)
 
 
@@ -63,7 +62,6 @@ async def list_obligations(
 ) -> list[ObligationOut]:
     """Возвращает список обязательств."""
     service = _build_service(session)
-
     return await service.list_with_lazy_expiry(
         category=category,
         status=status_filter,
@@ -80,7 +78,6 @@ async def upcoming_obligations(
 ) -> UpcomingResponse:
     """Возвращает ближайшие обязательства."""
     service = _build_service(session)
-
     return await service.upcoming(days)
 
 
@@ -94,7 +91,6 @@ async def pay_obligation(
 ) -> PayResponse:
     """Фиксирует оплату обязательства."""
     service = _build_service(session)
-
     return await service.pay(obligation_id)
 
 
