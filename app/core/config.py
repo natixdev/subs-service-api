@@ -3,7 +3,7 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parents[2]
 ENV_FILE = BASE_DIR / '.env'
 
 
@@ -15,10 +15,6 @@ class Settings(BaseSettings):
     postgres_db: str
     postgres_user: str
     postgres_password: str
-
-    elasticsearch_host: str
-    elasticsearch_port: int
-    elasticsearch_index: str = 'documents'
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE,

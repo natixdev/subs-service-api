@@ -62,3 +62,6 @@ class Obligation(Base):
         cascade='all, delete-orphan',
         passive_deletes=True,
     )
+
+    def __str__(self):
+        return (f'{self.__class__.__name__} ({self.category}) {self.title}')
