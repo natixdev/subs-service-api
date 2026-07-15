@@ -37,6 +37,8 @@ class Payment(Base):
     )
     obligation: Mapped['Obligation'] = relationship(back_populates='payments')
 
-    def __str__(self):
-        return (f'{self.__class__.__name__} ({self.obligation}) '
-                f'{self.paid_at} - {self.amount}')
+    def __str__(self) -> str:
+        return (
+            f'{self.__class__.__name__} ({self.obligation}) '
+            f'{self.paid_at} - {self.amount}'
+        )

@@ -3,7 +3,8 @@ from datetime import date, datetime
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from sqlalchemy import Date, DateTime, Enum as SAEnum, Index, Numeric, String, func
+from sqlalchemy import Date, DateTime, Index, Numeric, String, func
+from sqlalchemy import Enum as SAEnum
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -14,13 +15,15 @@ if TYPE_CHECKING:
     from app.models.payment import Payment
 
 
-def _enum_values(enum_cls: type[Category] | type[Recurrence] | type[Status]) -> list[str]:
+def _enum_values(
+    enum_cls: type[Category] | type[Recurrence] | type[Status],
+) -> list[str]:
     """Возвращает  значения enum для хранения в БД."""
     return [member.value for member in enum_cls]
 
 
 class Obligation(Base):
-    """Модель обязательств (подписка, счёт на оплату и т.п.)."""
+    """Модель обязательств (подписка, счет на оплату и т.п.)."""
 
     __tablename__ = 'obligations'
     __table_args__ = (
@@ -63,5 +66,5 @@ class Obligation(Base):
         passive_deletes=True,
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (f'{self.__class__.__name__} ({self.category}) {self.title}')

@@ -13,7 +13,6 @@ from os.path import dirname, abspath
 sys.path.insert(0, dirname(dirname(abspath(__file__))))
 
 from app.core.database import DATABASE_URL, Base
-from app.models import Obligation, Payment
 
 
 # this is the Alembic Config object, which provides
